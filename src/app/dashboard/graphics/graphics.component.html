@@ -1,0 +1,63 @@
+<div class="sidebar">
+    <div class="logo">
+        <img src="../../../../public/assets/icons/xilonen-logo.png" alt="Logo xd" />
+    </div>
+    <div class="menu">
+        <i class="fa-solid fa-house" style="color: #42be65;"></i>
+        <i class="fa-solid fa-file-pdf" style="color: #42be65;"></i>
+    </div>
+</div>
+
+<section class="graphics-section">
+    <div class="content">
+        <div class="cards">
+            <div class="card">
+                <h3>Luz UV-A</h3>
+                <p class="value">1.5 mW/cm²</p>
+                <span>Hace 10 min</span>
+                <h3>Luz UV-B</h3>
+                <p class="value">0.2 mW/cm²</p>
+                <span>Hace 10 min</span>
+                <canvas id="uvChart"></canvas>
+                <p class="status">Estado: <span class="good">Bien</span></p>
+            </div>
+
+            <div class="small-cards">
+                <div class="small-card">
+                    <h4>Tanque de agua</h4>
+                    <div class="gauge">
+                        <div class="gauge-fill" style="width:65%"></div>
+                        <div class="gauge-cover">65%</div>
+                    </div>
+                </div>
+
+                <div class="small-card">
+                    <h4>Temperatura actual</h4>
+                    <p class="value">84°F</p>
+                    <span>Hace 10 min</span>
+                </div>
+
+                <div class="small-card">
+                    <h4>Humedad</h4>
+                    <p class="value">52%</p>
+                    <span>Hace 10 min</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards bottom">
+            <div class="card">
+                <h3>Temperatura y Humedad</h3>
+                <canvas id="tempHumChart"></canvas>
+            </div>
+
+            <div class="card">
+                <h3>Calidad del aire</h3>
+                <p class="value">88%</p>
+                <span>Hace 10 min</span>
+                <h3>Calidad del Aire en el Huerto</h3>
+                <canvas id="airChart"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
