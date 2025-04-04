@@ -1,0 +1,129 @@
+.dashboard-container {
+  display: flex;
+  height: 50vh;
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.vertical-div {
+  flex: 1;
+  width: 300px;
+  height: 500px;
+  background-color: var(--black-second);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.vertical-div::-webkit-scrollbar {
+  width: 10px;
+}
+
+.vertical-div::-webkit-scrollbar-track {
+  background: var(--green);
+  border-radius: 5px;
+}
+
+.vertical-div::-webkit-scrollbar-thumb {
+  background: var(--black-second);
+  border-radius: 5px;
+}
+
+.vertical-div::-webkit-scrollbar-thumb:hover {
+  background: var(--black-second);
+}
+
+.dashboard-section {
+  flex: 1;
+  width: 500px;
+  height: 500px;
+  background-color: var(--black-primary);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.dashboard-section::-webkit-scrollbar {
+  width: 10px; 
+}
+
+.dashboard-section::-webkit-scrollbar-track {
+  background: var(--green); 
+  border-radius: 5px;
+}
+
+.dashboard-section::-webkit-scrollbar-thumb {
+  background: var(--black-second);
+  border-radius: 5px;
+}
+
+.dashboard-section::-webkit-scrollbar-thumb:hover {
+  background: var(--black-second);
+}
+
+.top-section {
+  background-color: var(--black-second);
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.dual-container {
+  display: flex;
+  gap: 15px;
+  height: 250px;
+}
+
+.square-card {
+  flex: 1; 
+  background-color: var(--black-second);
+  border-radius: 8px;
+  padding: 15px;
+  min-height: 120px;
+}
+
+.square-card h3 {
+  color: #212529;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.square-card p {
+  margin: 5px 0;
+  color: #495057;
+}
+
+.rectangle-card {
+  border-radius: 8px;
+  padding: 15px;
+  height: 400px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.chart-placeholder-tem-hum {
+    margin-top: 20px; 
+    width: 100%; 
+    height: 100%; 
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.chart-placeholder-aire {
+  background-color: var(--black-second);
+    margin-top: 10px; 
+    width: 100%; 
+    height: 100%; 
+    position: relative;
+    margin-bottom: 50px;
+}
+
+h3 {
+  color: var(--white);
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}

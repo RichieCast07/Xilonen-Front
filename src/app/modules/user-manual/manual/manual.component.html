@@ -1,0 +1,14 @@
+<div class="manual-container">
+    <h1 class="manual-title">Manual de Usuario</h1>
+    <div class="pdf-container">
+      <pdf-viewer 
+        [src]="pdfSrc"
+        [render-text]="true"
+        [original-size]="false"
+        [fit-to-page]="true"
+        [show-all]="true"
+        (error)="onError($event)"
+        style="display: block; height: 100%;"
+      ></pdf-viewer>
+    </div>
+  </div>

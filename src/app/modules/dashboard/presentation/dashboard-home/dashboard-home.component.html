@@ -1,0 +1,25 @@
+<div class="dashboard-container">
+  <div class="vertical-div">
+    <app-tempetura></app-tempetura>
+  </div>
+
+  <section class="dashboard-section">
+    <div class="dual-container">
+      <div class="square-card">
+        <app-tanque-agua></app-tanque-agua>
+      </div>
+
+      <div class="square-card">
+        <app-humedad-suelo></app-humedad-suelo>
+      </div>
+    </div>
+
+    <div class="rectangle-card">
+      <div class="chart-placeholder-tem-hum"><app-temperatura-humedad></app-temperatura-humedad></div>
+    </div>
+
+    <div class="rectangle-card">
+      <div class="chart-placeholder-aire"><app-calidad-aire></app-calidad-aire></div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,101 @@
+<section class="reports-container">
+  <!-- Panel de Reportes (izquierda) -->
+  <div class="vertical-div">
+    <div class="report-header">
+      <h2>Reportes Mensuales</h2>
+      <div class="calendar-container">
+        <button class="calendar-icon" (click)="toggleCalendar($event)">
+          <img src="assets/icons/calendar.png" alt="Calendario">
+        </button>
+        <div class="calendar-dropdown" *ngIf="showCalendar" (click)="$event.stopPropagation()">
+          <div class="calendar-header">
+            <button class="nav-btn" (click)="prevMonth()">❮</button>
+            <div class="month-year-display">
+              <span class="month-display clickable" (click)="toggleMonthSelector($event)">
+                {{ monthNames[currentMonth] }}
+              </span>
+              <span class="year-display clickable" (click)="toggleYearSelector($event)">
+                {{ currentYear }}
+              </span>
+            </div>
+            <button class="nav-btn" (click)="nextMonth()">❯</button>
+          </div>
+          
+          <!-- Selector de Mes -->
+          <div class="selector-container" *ngIf="showMonthSelector">
+            <div class="month-selector">
+              <div *ngFor="let month of monthNames; let i = index" 
+                   class="month-option" 
+                   [class.selected]="i === currentMonth"
+                   (click)="selectMonth(i, $event)">
+                {{ month }}
+              </div>
+            </div>
+          </div>
+          
+          <!-- Selector de Año -->
+          <div class="selector-container" *ngIf="showYearSelector">
+            <div class="year-selector">
+              <div *ngFor="let year of yearsRange" 
+                   class="year-option"
+                   [class.selected]="year === currentYear"
+                   (click)="selectYear(year, $event)">
+                {{ year }}
+              </div>
+            </div>
+          </div>
+          
+          <div class="weekdays">
+            <span *ngFor="let day of weekdays">{{ day }}</span>
+          </div>
+          <div class="days-grid">
+            <span *ngFor="let day of days" 
+                  [class]="'day ' + (day.inactive ? 'inactive' : '') + (day.selected ? ' selected' : '') + (day.today ? ' today' : '')"
+                  (click)="selectDay(day)">
+              {{ day.day }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Filas de reportes -->
+    <div class="report-row" *ngFor="let report of filteredReports">
+      <div class="report-date">{{ formatDate(report.date) }}</div>
+      <div class="actions">
+        <button class="icon-btn" title="Visualizar" (click)="viewReport(report.id)">
+          <img src="assets/icons/eyes.png" class="icon-img" alt="Visualizar">
+        </button>
+        <button class="icon-btn" title="Descargar" (click)="openDownloadModal(report)">
+          <img src="assets/icons/download.png" class="icon-img" alt="Descargar">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel de Vista Previa (derecha) -->
+  <div class="preview">
+    <h2>Vista Previa</h2>
+    <div class="preview-content">
+      <div class="empty-state" *ngIf="!selectedReportUrl">
+        <i class="fas fa-file-alt"></i>
+        <p>Seleccione un reporte para visualizarlo</p>
+      </div>
+      <div class="report-display" *ngIf="selectedReportUrl">
+        <iframe id="report-iframe" [src]="selectedReportUrl" style="width: 100%; height: 100%; border: none;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de confirmación -->
+  <div class="modal-overlay" *ngIf="showDownloadModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h3>Confirmar Descarga</h3>
+      <p>¿Está seguro que desea descargar este reporte?</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+        <button class="btn-confirm" (click)="confirmDownload()">Descargar</button>
+      </div>
+    </div>
+  </div>
+</section>
