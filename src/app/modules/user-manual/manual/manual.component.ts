@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './manual.component.css'
 })
 export class ManualComponent {
+  //url el pdf que vamoas a utilizar
   pdfSrc: string = 'assets/pdf/Manual-Xilonen.pdf'; 
 
   onError(error: any) {
