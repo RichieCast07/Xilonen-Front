@@ -9,13 +9,13 @@ import ApexCharts from 'apexcharts';
   templateUrl: './temperatura-humedad.component.html',
   styleUrl: './temperatura-humedad.component.css'
 })
-
 export class TemperaturaHumedadComponent implements AfterViewInit, OnDestroy {
-  @ViewChild('chart1', { static: true }) chart1Element!: ElementRef;
   @ViewChild('chart2', { static: true }) chart2Element!: ElementRef;
 
-  private chart1: ApexCharts | undefined;
   private chart2: ApexCharts | undefined;
+  private ws: WebSocket | undefined;
+
+  private humedadData: { x: number; y: number }[] = [];
 
   private getChartOptions(id: string, title: string, data: any[], color: string) {
     return {
@@ -23,7 +23,7 @@ export class TemperaturaHumedadComponent implements AfterViewInit, OnDestroy {
         id,
         type: 'line',
         height: '160px',
-        width: '500px',
+        width: '100%',
         group: 'sync-charts',
         toolbar: { show: false }
       },
@@ -40,7 +40,7 @@ export class TemperaturaHumedadComponent implements AfterViewInit, OnDestroy {
         type: 'datetime',
         labels: {
           style: {
-            colors: '#ffff', 
+            colors: '#ffff',
             fontSize: '12px'
           }
         }
@@ -48,7 +48,7 @@ export class TemperaturaHumedadComponent implements AfterViewInit, OnDestroy {
       yaxis: {
         labels: {
           style: {
-            colors: '#ffff', 
+            colors: '#ffff',
             fontSize: '12px'
           }
         }
@@ -56,45 +56,52 @@ export class TemperaturaHumedadComponent implements AfterViewInit, OnDestroy {
       stroke: { curve: 'smooth' },
       dataLabels: { enabled: false },
       tooltip: {
-        x: { format: 'HH:mm' }
+        x: { format: 'HH:mm:ss' }
       },
       colors: [color]
     };
   }
 
   ngAfterViewInit(): void {
-    const tempData = [
-      { x: new Date('2025-04-01T00:00:00').getTime(), y: 20 },
-      { x: new Date('2025-04-01T06:00:00').getTime(), y: 22 },
-      { x: new Date('2025-04-01T12:00:00').getTime(), y: 30 },
-      { x: new Date('2025-04-01T18:00:00').getTime(), y: 25 },
-      { x: new Date('2025-04-01T23:59:00').getTime(), y: 21 }
-    ];
-
-    const humedadData = [
-      { x: new Date('2025-04-01T00:00:00').getTime(), y: 50 },
-      { x: new Date('2025-04-01T06:00:00').getTime(), y: 55 },
-      { x: new Date('2025-04-01T12:00:00').getTime(), y: 60 },
-      { x: new Date('2025-04-01T18:00:00').getTime(), y: 58 },
-      { x: new Date('2025-04-01T23:59:00').getTime(), y: 53 }
-    ];
-
-    this.chart1 = new ApexCharts(
-      this.chart1Element.nativeElement, 
-      this.getChartOptions('temperatura-chart', 'Temperatura', tempData, '#42BE65')
-    );
-    
     this.chart2 = new ApexCharts(
-      this.chart2Element.nativeElement, 
-      this.getChartOptions('humedad-chart', 'Humedad de Suelo', humedadData, '#008626')
+      this.chart2Element.nativeElement,
+      this.getChartOptions('humedad-chart', 'Humedad de Suelo', this.humedadData, '#008626')
     );
 
-    this.chart1.render();
     this.chart2.render();
+
+    this.ws = new WebSocket('ws://localhost:8080/ws'); 
+
+    this.ws.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+
+        if (data.tipo === 'Humedad') {
+          const punto = {
+            x: new Date(data.fecha_hora).getTime(),
+            y: data.valor
+          };
+
+          this.humedadData.push(punto);
+
+          if (this.humedadData.length > 20) {
+            this.humedadData.shift();
+          }
+
+          this.chart2?.updateSeries([{ data: this.humedadData }]);
+        }
+      } catch (err) {
+        console.error('❌ Error procesando mensaje del WebSocket:', err);
+      }
+    };
+
+    this.ws.onerror = (err) => {
+      console.error('❌ Error en conexión WebSocket:', err);
+    };
   }
 
   ngOnDestroy(): void {
-    this.chart1?.destroy();
     this.chart2?.destroy();
+    this.ws?.close();
   }
 }
