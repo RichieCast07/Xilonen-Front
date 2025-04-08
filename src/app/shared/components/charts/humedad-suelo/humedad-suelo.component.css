@@ -1,0 +1,52 @@
+.dashboard-container {
+    background-color: var(--black-second);
+    min-height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.humedad-suelo-card {
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    padding: 1.5rem;
+    width: min(200px, 100%);
+    text-align: center;
+    background-color: var(--black-second);
+}
+
+.humedad-suelo-card__title {
+    font-size: 1.125rem; 
+    font-weight: 700;
+    color: var(--white);
+    margin: 0 0 1rem 0;
+    background-color: var(--black-second);
+}
+
+.humedad-suelo-card__subtitle {
+    font-size: 0.875rem; 
+    color: var(--gray);
+    margin: 0 0 0.5rem 0;
+    background-color: var(--black-second);
+    margin-bottom: 10px;
+}
+
+.humedad-suelo-card__value {
+    font-size: 1.5rem; 
+    font-weight: 700;
+    color: var(--green);
+    margin: 0 0 0.5rem 0;
+    background-color: var(--black-second);
+    margin-bottom: 10px;
+}
+
+.humedad-suelo-card__timestamp {
+    font-size: 12px; 
+    color: var(--gray);
+    margin: 0;
+    background-color: var(--black-second);
+}
+
+

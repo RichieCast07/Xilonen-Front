@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="left-section">
+    <form class="login-form" (ngSubmit)="onLoginSubmit()">
+      <h1 class="title">Inicia Sesión</h1>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="tu.email@ejemplo.com">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" placeholder="Ingresa tu contraseña">
+        <div class="password-hint">Asegúrate de que tu contraseña sea segura.</div>
+      </div>
+
+      <div class="form-footer">
+        <button (click)="onLoginSubmit()" type="submit" class="btn-signup">Iniciar Sesión</button>
+        <div class="login-link">
+          ¿No tienes una cuenta? <p (click)="onRegisterClick()">Regístrate</p>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="right-section">
+    <div class="image-container">
+      <img src="assets/images/cilantro-uv.jpg" alt="Decorative background" class="auth-image">
+      <div class="image-overlay">
+        <h2>Bienvenido de nuevo</h2>
+        <p>Inicia sesión y sigue haciendo crecer tus ganancias.</p>
+      </div>
+    </div>
+  </div>
+</div>

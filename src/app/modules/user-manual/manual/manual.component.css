@@ -1,0 +1,51 @@
+.manual-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 5rem;
+  }
+  
+  .manual-title {
+    color: var(--green);
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .pdf-container {
+    width: 80%;
+    height: 600px;
+    border: 3px solid var(--green); 
+    overflow: auto; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .pdf-container::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .pdf-container::-webkit-scrollbar-track {
+    background: var(--green); 
+    border-radius: 5px;
+  }
+  
+  .pdf-container::-webkit-scrollbar-thumb {
+    background: var(--black-second);
+    border-radius: 5px;
+  }
+  
+  .pdf-container::-webkit-scrollbar-thumb:hover {
+    background: var(--black-second);
+  }
+  
+  .pdf-container::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  
+  .pdf-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--green) rgba(76, 175, 80, 0.1);
+  }
