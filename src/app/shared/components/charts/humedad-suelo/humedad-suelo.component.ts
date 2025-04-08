@@ -13,7 +13,7 @@ export class HumedadSueloComponent implements OnInit, OnDestroy {
   private ws: WebSocket | undefined;
 
   ngOnInit(): void {
-    this.ws = new WebSocket('ws://localhost:8080/ws'); 
+    this.ws = new WebSocket('ws://54.81.17.2:8080/ws'); 
 
     this.ws.onmessage = (event) => {
       try {

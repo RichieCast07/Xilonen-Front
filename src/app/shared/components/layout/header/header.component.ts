@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importar CommonModule
+import { Component, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule], // Agregar CommonModule aquí
+  imports: [RouterModule, CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
@@ -19,22 +18,27 @@ export class HeaderComponent {
 
   constructor(private router: Router) {}
 
+  get isDashboard(): boolean {
+    const dashboardRoutes = ['/home', '/report', '/help'];
+    return dashboardRoutes.some(route => this.router.url.startsWith(route));
+  }
+
   toggleNotifications(event: MouseEvent): void {
     event.stopPropagation();
     this.showNotifications = !this.showNotifications;
-    console.log('Notifications toggled:', this.showNotifications); // Para depuración
+    console.log('Notifications toggled:', this.showNotifications);
   }
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
     const notificationsElement = document.querySelector('.notifications-dropdown');
     const bellIcon = document.querySelector('.notification-icon');
-    
-    if (this.showNotifications && 
-        !notificationsElement?.contains(event.target as Node) && 
+
+    if (this.showNotifications &&
+        !notificationsElement?.contains(event.target as Node) &&
         !bellIcon?.contains(event.target as Node)) {
       this.showNotifications = false;
-      console.log('Notifications closed'); // Para depuración
+      console.log('Notifications closed');
     }
   }
 }

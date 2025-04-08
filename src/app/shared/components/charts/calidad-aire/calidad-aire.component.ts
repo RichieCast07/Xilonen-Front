@@ -84,7 +84,7 @@ export class CalidadAireComponent implements OnInit {
 
   // Conexión al WebSocket
   initWebSocket(): void {
-    this.socket = new WebSocket('ws://localhost:8080/ws'); // Cambia si tu puerto/host es diferente
+    this.socket = new WebSocket('ws://54.81.17.2:8080/ws'); // Cambia si tu puerto/host es diferente
 
     this.socket.onopen = () => {
       console.log('✅ WebSocket conectado');

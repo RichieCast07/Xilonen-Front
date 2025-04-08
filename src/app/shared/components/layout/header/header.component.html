@@ -1,5 +1,5 @@
 <div class="full-view-container">
-  <header class="header">
+  <header class="header" *ngIf="isDashboard">
     <img src="assets/icons/xilonen-logo.png" alt="xilonen-logo">
     <div class="header-actions">
       <i class="fas fa-bell notification-icon" (click)="toggleNotifications($event)"></i>
@@ -21,9 +21,9 @@
       </div>
     </div>
   </header>
-  
+
   <div class="content-wrapper">
-    <div class="vertical-menu">
+    <div class="vertical-menu" *ngIf="isDashboard">
       <a routerLink="/home" class="menu-item" title="Inicio" routerLinkActive="active">
         <img src="assets/icons/home.png" class="icons" alt="Home-Icon">
         <span class="menu-label">Inicio</span>
@@ -37,6 +37,7 @@
         <span class="menu-label">Ayuda</span>
       </a>
     </div>
+
     <main class="main-content">
       <ng-content></ng-content>
     </main>

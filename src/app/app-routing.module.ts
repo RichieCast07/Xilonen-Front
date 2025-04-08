@@ -8,7 +8,7 @@ import { UserManualModule } from './modules/user-manual/user-manual.module';
 import { ManualComponent } from './modules/user-manual/manual/manual.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardHomeComponent},
+  { path: '', component: RegisterFormComponent},
   { path: 'home', component: DashboardHomeComponent},
   { path: 'register', component: RegisterFormComponent },
   { path: 'login', component: LoginFormComponent },

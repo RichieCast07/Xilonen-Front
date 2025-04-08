@@ -70,7 +70,7 @@ export class TemperaturaHumedadComponent implements AfterViewInit, OnDestroy {
 
     this.chart2.render();
 
-    this.ws = new WebSocket('ws://localhost:8080/ws'); 
+    this.ws = new WebSocket('ws://54.81.17.2:8080/ws'); 
 
     this.ws.onmessage = (event) => {
       try {
